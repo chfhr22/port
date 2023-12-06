@@ -24,9 +24,6 @@
             </div>
             <div class="contents">
                 <nav class="manu">
-                    <!-- <a href="phpSite.html" class="nav01"><em>team project1</em> php site/<img src="assets/img/arrow.jpg" alt="" class="arrow"></a>
-                    <a href="#"><em>team project2</em> react site/<img src="assets/img/arrow.jpg" alt="" class="arrow"></a> <br />
-                    <a href="#"><em>project1</em> youtube site/<img src="assets/img/arrow.jpg" alt="" class="arrow"></a> -->
                     <ul class="nav__team__project">
                         <li class="nav01">
                             <a href="phpSite.html">
@@ -34,7 +31,7 @@
                                 <img src="assets/img/arrow.jpg" alt="" class="arrow">
                             </a>
                         </li>
-                        <li>
+                        <li class="nav02">
                             <a href="#">
                                 <em>team project2</em> react site/
                                 <img src="assets/img/arrow.jpg" alt="" class="arrow">
@@ -48,7 +45,7 @@
                                 <img src="assets/img/arrow.jpg" alt="" class="arrow">
                             </a>
                         </li>
-                        <li>
+                        <li class="nav04">
                             <a href="#">
                                 <em>project2</em> vue movie site/
                                 <img src="assets/img/arrow.jpg" alt="" class="arrow">
@@ -56,13 +53,13 @@
                         </li>
                     </ul>
                     <ul class="nav__intro">
-                        <li>
+                        <li class="nav05">
                             <a href="#">
                                 <em>intro</em> about me/
                                 <img src="assets/img/arrow.jpg" alt="" class="arrow">
                             </a>
                         </li>
-                        <li class="contact">
+                        <li class="nav06">
                             <a href="contact.html">
                             <em>intro</em> contact/
                             <img src="assets/img/arrow.jpg" alt="" class="arrow">
@@ -134,7 +131,11 @@
             // hover
             function showNavigation() {
     const nav01 = document.querySelector('.nav01');
+    const nav02 = document.querySelector('.nav02');
     const nav03 = document.querySelector('.nav03');
+    const nav04 = document.querySelector('.nav04');
+    const nav05 = document.querySelector('.nav05');
+    const nav06 = document.querySelector('.nav06');
     const imgContainer = document.querySelector('.img__container');
     const hoverImg = document.querySelector('.hover__img');
     const hoverImgImg = document.querySelector('.hover__img img');
@@ -156,11 +157,31 @@
         hoverImgImg.src = "assets/img/sexyBrain.jpg";
         hoverImgAnimationEnter.restart();
     });
-
     nav01.addEventListener('mouseleave', function (event) {
         event.stopPropagation();
         hoverImgAnimationEnter.pause();
         nav01.classList.remove("hover");
+        imgContainer.classList.remove("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
+        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
+        hoverImgAnimationLeave.restart();
+    });
+
+    nav02.addEventListener('mouseenter', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationLeave.pause();
+        nav02.classList.add("hover");
+        imgContainer.classList.add("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
+        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
+        gsap.to(".img__box", { backgroundColor: "rgba(74, 125, 255, 0.8)" });
+        hoverImgImg.src = "assets/img/sexyBrain.jpg";
+        hoverImgAnimationEnter.restart();
+    });
+    nav02.addEventListener('mouseleave', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationEnter.pause();
+        nav02.classList.remove("hover");
         imgContainer.classList.remove("on");
         gsap.to(".img__box", { duration: 0.5, opacity: 0 });
         gsap.to(".hover__img img", { duration: 1, opacity: 0 });
@@ -178,11 +199,73 @@
         hoverImgImg.src = "assets/img/youtube.jpg";
         hoverImgAnimationEnter.restart();
     });
-
     nav03.addEventListener('mouseleave', function (event) {
         event.stopPropagation();
         hoverImgAnimationEnter.pause();
         nav03.classList.remove("hover");
+        imgContainer.classList.remove("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
+        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
+        hoverImgAnimationLeave.restart();
+    });
+
+    nav04.addEventListener('mouseenter', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationLeave.pause();
+        nav04.classList.add("hover");
+        imgContainer.classList.add("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
+        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
+        gsap.to(".img__box", { backgroundColor: "rgba(212, 36, 54, 0.8)" });
+        hoverImgImg.src = "assets/img/sexyBrain.jpg";
+        hoverImgAnimationEnter.restart();
+    });
+    nav04.addEventListener('mouseleave', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationEnter.pause();
+        nav04.classList.remove("hover");
+        imgContainer.classList.remove("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
+        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
+        hoverImgAnimationLeave.restart();
+    });
+
+    nav05.addEventListener('mouseenter', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationLeave.pause();
+        nav05.classList.add("hover");
+        imgContainer.classList.add("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
+        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
+        gsap.to(".img__box", { backgroundColor: "rgba(24, 163, 80, 0.8)" });
+        hoverImgImg.src = "assets/img/sexyBrain.jpg";
+        hoverImgAnimationEnter.restart();
+    });
+    nav05.addEventListener('mouseleave', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationEnter.pause();
+        nav05.classList.remove("hover");
+        imgContainer.classList.remove("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
+        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
+        hoverImgAnimationLeave.restart();
+    });
+
+    nav06.addEventListener('mouseenter', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationLeave.pause();
+        nav06.classList.add("hover");
+        imgContainer.classList.add("on");
+        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
+        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
+        gsap.to(".img__box", { backgroundColor: "rgba(255, 227, 184, 0.8)" });
+        hoverImgImg.src = "assets/img/contact.jpg";
+        hoverImgAnimationEnter.restart();
+    });
+    nav06.addEventListener('mouseleave', function (event) {
+        event.stopPropagation();
+        hoverImgAnimationEnter.pause();
+        nav06.classList.remove("hover");
         imgContainer.classList.remove("on");
         gsap.to(".img__box", { duration: 0.5, opacity: 0 });
         gsap.to(".hover__img img", { duration: 1, opacity: 0 });
