@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@import "setting/font.css";
+@import "setting/var.css";
+@import "setting/reset.css";
+@import "setting/common.css";
+@import "setting/default.min.css";
+
+@import "section/main.css";
+@import "section/detail.css";

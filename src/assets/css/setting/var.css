@@ -1,0 +1,43 @@
+:root {
+    --main-font: "League Gothic";
+    --en-font: "KoHo";
+    --en-sub-font: "Poppins";
+    --ko-font: "Arita-buri-SemiBold";
+    --ko-sub-font: "Chosunilbo_myungjo";
+
+    --mainBg: #E0E1E3;
+
+    --main-font-color: #333;
+    --sub-font-color: #7d7d7d;
+
+    --black: #000;
+    --white: #fff;
+
+
+    /* 기본 폰트 설정 */
+    font-family: var(--en-font), var(--ko-font);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    /* 폰트를 부드럽게 렌더링하기 위한 속성  */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* 아이폰 가로 모드에서 글씨 확대 금지 */
+    -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 800px) {
+    :root {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+@media (max-width: 600px) {
+    :root {
+        font-size: 12px;
+    }
+}

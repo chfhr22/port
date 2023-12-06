@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="detail__wrap">
+        <div class="left youtube">
+            <a href="index.html" class="go__main">메인으로</a>
+        </div>
+        <div class="right">
+            <div class="right__wrap">
+                <h1 class="title">Youtube Site</h1>
+                <div class="stack">STACK : REACT, SASS</div>
+                <div class="detail__info">
+                    <!-- 시작 -->
+                    <h2 class="desc__title">시작</h2>
+                    <p class="desc">
+                        리액트를 활용하여 개발한 요리 유튜브 사이트는 제가 자취를 하면서 자주 요리를 해먹는데, 그때마다 유튜브에서 레시피를 찾곤 했습니다. 그러나 레시피를 검색할 때마다 딱히 찾지 않았던 정보들까지 같이 나오는 경우가 많아서, YouTube API를 활용하여 다양한 요리 레시피를 직관적으로 검색하고 시청할 수 있도록 구현했습니다.
+                    </p>
+
+                    <!-- 기능 -->
+                    <h2 class="desc__title">기능</h2>
+                    <ul class="desc__list">
+                        <li>Search : 검색어를 입력시 유튜브에 입력한 것처럼 검색어에 따른 결과가 나옵니다.</li>
+                        <li>Channel : 한 유튜버의 정보, 비디오를 한번에 볼 수 있는 상세페이지입니다.</li>
+                        <li>Video : 원하시는 영상을 볼 수 있고, 해당 영상에 써있는 댓글도 볼 수 있습니다.</li>
+                    </ul>
+
+                    <!-- 작업 -->
+                    <h2 class="desc__title">작업</h2>
+                    <h3 class="desc__title__small">- API가져오기</h3>
+<pre class="code"><code class="language-js">
+export const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
+
+const options = {
+    params: {
+        maxResults: 48,
+    },
+    headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+    },
+};
+
+export const fetchFromAPI = async (url) => {
+    const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+    return data;
+};
+</code></pre>
+                    <p class="desc">
+                        가독성을 위해 BASE_URL에 youtube api의 url을 할당하였으며, option에 axios로 요청을 보낼 때 사용할 설정을 정의했습니다. <br />
+                        fetchFromAPI 함수는 주어진 url로 axios를 사용해 get 요청을 보내는데, 이때 await을 사용하여 promise가 해결될 때까지 기다린 후 나온 데이터를 속성에 반환합니다.
+                        api키는 공유시 남용을 방지하기 위해 .env파일에 값을 넣어 둔 뒤, gitignore에 등록하여 git에 공유해도 해당 정보가 올라가지 않도록 했습니다.  <br />
+                    </p>
+
+                    <h3 class="desc__title__small">- 검색</h3>
+<pre class="code"><code class="language-js">
+const [searchKeyword, setSearchKeyword] = useState('');
+const navigate = useNavigate();
+const handleSearch = () => {
+    if(searchKeyword){
+        navigate(`/search/${searchKeyword}`);
+        setSearchKeyword('');
+    }
+}
+</code></pre>
+                    <p class="desc">
+                        useState를 사용하여 searchKeyword에 현재 검색어를 저장하고 갱신하고, usenavigate를 사용하여 페이지이동을 처리했습니다. <br />
+                        input에 onChange를 사용해서 안의 값을 가져온 후 엔터키를 누르면 handleSearch함수가 실행돼서 검색어에 따른 페이지가 나오도록 했습니다.
+                    </p>
+
+                    <h3 class="desc__title__small">- 검색</h3>
+<pre class="code"><code class="language-js">
+const [searchKeyword, setSearchKeyword] = useState('');
+const navigate = useNavigate();
+const handleSearch = () => {
+    if(searchKeyword){
+        navigate(`/search/${searchKeyword}`);
+        setSearchKeyword('');
+    }
+}
+</code></pre>
+                    <p class="desc">
+                        useState를 사용하여 searchKeyword에 현재 검색어를 저장하고 갱신하고, usenavigate를 사용하여 페이지이동을 처리했습니다. <br />
+                        handleSearch함수는 받아 온 값을 useNavigate를 활용하여 페이지 전환을 하도록 정의해 두었습니다.
+                    </p>
+
+                    <h3 class="desc__title__small">- 채널보기</h3>
+<pre class="code"><code class="language-js">
+    const { channelId } = useParams();
+    const [channelDetail, setChannelDetail] = useState();
+    const [channelVideo, setChannelVideo] = useState([]);
+
+    useEffect(() => {
+        const fetchResults = async () => {
+            try {
+                const data = await fetchFromAPI(`channels?part=snippet&id=${channelId}`);
+                setChannelDetail(data.items[0]);
+
+                const videoData = await fetchFromAPI(`search?channelId=${channelId}&part=snippet&order=date`);
+                setChannelVideo(videoData.items);
+                setNextPageToken(videoData.nextPageToken);
+            } catch (error) {
+                console.log("Error -> ", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchResults();
+    }, [channelId])
+</code></pre>
+                    <p class="desc">
+                        fetchResults는 비동기적으로 실행되며, api에서 데이터를 가져오는데,
+이때 useParams를 사용하여 url에 있는 channelId를 가져온 후 fetchFromAPI를 사용하여, 해당 값에 일치하는 데이터를 가져왔습니다.
+그리고 try, catch를 사용하여 혹시모를 에러가 생겼을 때 catch를 통하여 에러를 잡아내도록 하였습니다.
+                    </p>
+
+                    <h3 class="desc__title__small">- 영상보기</h3>
+<pre class="code"><code class="language-js">
+const {videoId} = useParams();
+const [videoDetail, setVideoDetail] = useState(null);
+
+useEffect(() => {
+    fetchFromAPI(`videos?part=snippet,statistics&id=${videoId}`)
+    .then((data) => {
+        console.log(data)
+        setVideoDetail(data.items[0])
+        setLoading(false)
+    })
+}, [videoId])
+</code></pre>
+                    <p class="desc">
+                        useParams를 사용하여 videoId를 가져와 api에서 해당 videoId와 일치하는 데이터를 가져와 보여주도록 했습니다.
+                    </p>
+
+<pre class="code"><code class="language-js">
+{videoDetail &amp;&amp; (
+    &lt;ReactPlayer 
+        playing={true}
+        url={`https://www.youtube.com/watch?v=${videoId}`}
+        width="100%"
+        height="100%"
+        style={{position: "absolute", top:0, left: 0}}
+    /&gt; 
+)}
+</code></pre>
+                    <p class="desc">
+                        && 연산자를 이용하여 데이터가 다 들어오면 그 때 보여주도록 하였으며, <br />
+이렇게하면 만약 api호출로 데이터를 다 받아오지 못한 상태에서는 videodetail이 거짓이 되므로 해당 코드가 실행되지않아 준비되었을 때만 해당 내용을 렌더링하도록하여,
+오류와 불필요한 렌더링을 방지했습니다. <br />
+영상은 react player 라이브러리를 사용하여 페이지에 보여주었습니다.
+                    </p>
+
+                    <!-- 마무리 -->
+                    <h2 class="desc__title">마무리</h2>
+                    <p class="desc">
+                        코딩을 접하기 전부터 api라는 말을 종종 들어봤지만 실제로사용해보는건 처음이었습니다. <br />
+                        처음엔 api를 가져오고 적용시키는게 어려워서 한참을 헤매기도 했지만, api문서나 postman을 보면서 데이터를 찾아보고 하다보니 방향을 잡을 수 있습니다.<br />
+                        특히, 유튜브 API를 사용하는 것이라면 어떤 주제로 할지 생각하다가 제가 좋아하는 요리라는 주제로 프로젝트를 진행하게 되면서, 더 흥미롭고 집중력이 높아진 것 같습니다. <br />
+                        무작정이 아닌 관심사에 기반하여 코딩을 하다보니 더욱 의미있고 즐거운 경험이었습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

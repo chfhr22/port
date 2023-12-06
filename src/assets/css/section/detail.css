@@ -1,0 +1,146 @@
+#detail__wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #fff;
+}
+
+/* left */
+.left {
+    width: 48%;
+    height: 100vh;
+}
+.left.php {
+    background-image: url("../../img/sexybrain_detail.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.left.youtube {
+    background-image: url("../../img/youtube.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.left.contact {
+    background-image: url("../../img/cointact_detail.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.left .go__main {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+    padding: 10px 20px;
+    background-color: #FF4E4E;
+    color: #fff;
+    border-radius: 30px;
+}
+
+/* right */
+.right {
+    width: 52%;
+    height: 100vh;
+    padding: 50px;
+    box-sizing: border-box;
+    font-family: var(--ko-sub-font);
+    color: var(--black);
+}
+.right .link {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+}
+.right .link a {
+    display: inline-block;
+    color: var(--black);
+    padding: 5px 20px;
+    border: 1px solid var(--black);
+    border-radius: 30px;
+}
+.right .link a:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+/* right__wrap */
+.right .right__wrap {
+    width: 100%;
+    position: relative;
+}
+.right .right__wrap .title {
+    font-size: 4vw;
+    line-height: 0.8;
+    font-family: var(--en-font);
+}
+.right .right__wrap .stack {
+    margin-top: 40px;
+}
+
+
+/* detail__info */
+.detail__info {
+    width: 100%;
+    height: 70vh;
+    overflow-y: auto;
+}
+.detail__info .desc__title {
+    width: 50%;
+    font-size: 30px;
+    margin-top: 20px;   
+    border-bottom: 1px solid var(--black);
+}
+.detail__info .desc__title__small {
+    font-size: 20px;
+    margin-top: 20px;
+}
+.detail__info .desc {
+    margin: 10px 20px 0px 20px;
+    font-size: 16px;
+}
+.detail__info .desc__list {
+    margin: 10px 20px 0px 20px;
+    line-height: 1.6;
+}
+.detail__info .desc__img {
+    margin-top: 20px;
+    margin-left: 7vw;
+    width: 30vw;
+    height: 200px;
+    background-image: url("../../img/sexy_figma.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.detail__info .code {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.contact__info {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.contact__info .email {
+    width: 100%;
+}
+
+
+/* scroll */
+.detail__info::-webkit-scrollbar {
+    width: 7px;
+}
+.detail__info::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9;
+    border-radius: 20px;
+}
+.detail__info::-webkit-scrollbar-track {
+    background-color: var(--white);
+}
