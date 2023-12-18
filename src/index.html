@@ -9,6 +9,9 @@
 </head>
 <body>
     <div id="wrap">
+        <img src="assets/img/sexybrain.jpg" alt="" class="project__img">
+        <img src="assets/img/youtube.jpg" alt="" class="project__img">
+        <img src="assets/img/contact.jpg" alt="" class="project__img">
         <header id="header">
             <h1 class="name">CHOROK KWON</h1>
         </header>
@@ -24,48 +27,54 @@
             </div>
             <div class="contents">
                 <nav class="manu">
-                    <ul class="nav__team__project">
-                        <li class="nav01">
-                            <a href="phpSite.html">
-                                <em>team project1</em> php site/
-                                <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                            </a>
-                        </li>
-                        <li class="nav02">
-                            <a href="#">
-                                <em>team project2</em> react site/
-                                <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav__project">
-                        <li class="nav03">
-                            <a href="youtube.html">
-                                <em>project1</em> youtube site/
-                                <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                            </a>
-                        </li>
-                        <li class="nav04">
-                            <a href="#">
-                                <em>project2</em> vue movie site/
-                                <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav__intro">
-                        <li class="nav05">
-                            <a href="#">
-                                <em>intro</em> about me/
-                                <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                            </a>
-                        </li>
-                        <li class="nav06">
-                            <a href="contact.html">
-                            <em>intro</em> contact/
-                            <img src="assets/img/arrow.jpg" alt="" class="arrow">
-                        </a>
-                        </li>
-                    </ul>
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">team project01</div>
+                            <div class="project__title">php site/</div>
+                        </a>    
+                        
+                    </div>
+
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">team project02</div>
+                            <div class="project__title">react site/</div>
+                        </a>    
+                        
+                    </div> <br />
+
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">project01</div>
+                            <div class="project__title">youtube site/</div>
+                        </a>    
+                        <img src="assets/img/youtube.jpg" alt="" class="project__img">
+                    </div>
+
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">project02</div>
+                            <div class="project__title">movie site/</div>
+                        </a>    
+                        <img src="assets/img/youtube.jpg" alt="" class="project__img">
+                    </div> <br />
+
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">intro</div>
+                            <div class="project__title">about me/</div>
+                        </a>    
+                        <img src="assets/img/youtube.jpg" loading="eager" alt="" class="project__img">
+                    </div>
+
+                    <div role="listitem" class="list__box">
+                        <a href="phpSite.html" class="project__link under__line">
+                            <div class="project__sub">intro</div>
+                            <div class="project__title">contact/</div>
+                        </a>    
+                        <img src="assets/img/youtube.jpg" loading="eager" alt="" class="project__img">
+                    </div>
+
                 </nav>
                 <div class="link">
                     <a href="#">email</a>
@@ -75,16 +84,10 @@
         </main>
 
     </div>
-    <div class="img__container">
-        <div class="img__box"></div>
-        <div class="hover__img">
-            <img src="" alt="">
-        </div>
-    </div>
-
     
     <script type="module" src="assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -128,157 +131,199 @@
             }
             // name
 
-            // hover
-            function showNavigation() {
-    const nav01 = document.querySelector('.nav01');
-    const nav02 = document.querySelector('.nav02');
-    const nav03 = document.querySelector('.nav03');
-    const nav04 = document.querySelector('.nav04');
-    const nav05 = document.querySelector('.nav05');
-    const nav06 = document.querySelector('.nav06');
-    const imgContainer = document.querySelector('.img__container');
-    const hoverImg = document.querySelector('.hover__img');
-    const hoverImgImg = document.querySelector('.hover__img img');
-    const imgBox = document.querySelector('.img__box');
+            // 마우스 이벤트를 처리하기 위한 이 코드를 추가합니다.
+            const body = document.body;
+            const projectImg = document.querySelectorAll('.project__img');
+            const projectLinks = document.querySelectorAll('.project__link');
+            
 
-    gsap.set(".img__box", { opacity: 0 });
-    gsap.set(".hover__img img", { y: "0%" });
-    let hoverImgAnimationEnter = gsap.fromTo(".hover__img img", { y: "300%" }, { y: "-50%", duration: 0.7, opacity: 0.8, paused: true });
-    let hoverImgAnimationLeave = gsap.fromTo(".hover__img img", { y: "-50%" }, { y: "-300%", duration: 0.7, opacity: 0, paused: true });
+            // 애니메이션을 저장할 객체
+            const projectAnimations = {
+                project1: null,
+                project2: null,
+                project3: null,
+            };
 
-    nav01.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav01.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(153, 33, 226, 0.8)" });
-        hoverImgImg.src = "assets/img/sexyBrain.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav01.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav01.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
+            // 첫 번째 .project__link에 대한 이벤트 리스너
+            const projectLink1 = document.querySelectorAll('.project__link')[0];
+            const projectImg1 = document.querySelectorAll('.project__img')[0];
 
-    nav02.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav02.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(74, 125, 255, 0.8)" });
-        hoverImgImg.src = "assets/img/sexyBrain.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav02.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav02.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
+            projectLink1.addEventListener('mouseenter', function () {
+                body.style.backgroundColor = 'rgb(150, 43, 255)';
+                if (projectAnimations.project1) {
+                projectAnimations.project1.kill();
+                }
+                projectAnimations.project1 = gsap.to(projectImg1, {
+                opacity: 0.9,
+                transform: 'translate(-50%, -50%) scale(1) rotate(-15deg)',
+                duration: 0.6,
+                ease: "power3.inOut",
+                });
+            });
 
-    nav03.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav03.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(255, 200, 59, 0.8)" });
-        hoverImgImg.src = "assets/img/youtube.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav03.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav03.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
+            projectImg1.addEventListener('mouseenter', function () {
+                projectAnimations.project1.kill();
+            });
 
-    nav04.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav04.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(212, 36, 54, 0.8)" });
-        hoverImgImg.src = "assets/img/sexyBrain.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav04.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav04.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
+            projectLink1.addEventListener('mouseleave', function () {
+                body.style.backgroundColor = 'rgb(224, 225, 227)';
+                if (projectAnimations.project1) {
+                projectAnimations.project1.kill();
+                }
+                projectAnimations.project1 = gsap.to(projectImg1, {
+                opacity: 0,
+                transform: 'translate(50%, -200%) scale(0.3) rotate(0deg)',
+                duration: 0.3,
+                ease: "power1.in",
+                onComplete: function () {
+                    gsap.to(projectImg1, { transform: 'translate3d(50%, 200%, 0px) scale3d(0.3, 0.3, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)', duration: '0', delay: 0.6 });
+                    projectAnimations.project1 = null;
+                }
+                });
+            });
 
-    nav05.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav05.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(24, 163, 80, 0.8)" });
-        hoverImgImg.src = "assets/img/sexyBrain.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav05.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav05.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
+            // 두 번째 .project__link에 대한 이벤트 리스너
+            const projectLink2 = document.querySelectorAll('.project__link')[1];
+            const projectImg2 = document.querySelectorAll('.project__img')[1];
 
-    nav06.addEventListener('mouseenter', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationLeave.pause();
-        nav06.classList.add("hover");
-        imgContainer.classList.add("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 1 });
-        gsap.to(".hover__img img", { duration: 1.2, opacity: 1 });
-        gsap.to(".img__box", { backgroundColor: "rgba(255, 227, 184, 0.8)" });
-        hoverImgImg.src = "assets/img/contact.jpg";
-        hoverImgAnimationEnter.restart();
-    });
-    nav06.addEventListener('mouseleave', function (event) {
-        event.stopPropagation();
-        hoverImgAnimationEnter.pause();
-        nav06.classList.remove("hover");
-        imgContainer.classList.remove("on");
-        gsap.to(".img__box", { duration: 0.5, opacity: 0 });
-        gsap.to(".hover__img img", { duration: 1, opacity: 0 });
-        hoverImgAnimationLeave.restart();
-    });
-}
+            projectLink2.addEventListener('mouseenter', function () {
+                body.style.backgroundColor = 'rgb(255, 150, 43)';
+                if (projectAnimations.project2) {
+                projectAnimations.project2.kill();
+                }
+                projectAnimations.project2 = gsap.to(projectImg2, {
+                opacity: 0.9,
+                transform: 'translate(-50%, -50%) scale(1) rotate(-15deg)',
+                duration: 0.8,
+                ease: "power3.inOut",
+                });
+            });
 
-        // 이미지 및 스타일 등이 로딩된 후에 showNavigation 함수 호출
-        window.addEventListener('load', function() {
-            // 3초 후에 showNavigation 함수 호출
-            setTimeout(showNavigation, 2500);
+            projectImg2.addEventListener('mouseenter', function () {
+                projectAnimations.project2.kill();
+            });
+
+            projectLink2.addEventListener('mouseleave', function () {
+                body.style.backgroundColor = 'rgb(224, 225, 227)';
+                if (projectAnimations.project2) {
+                projectAnimations.project2.kill();
+                }
+                projectAnimations.project2 = gsap.to(projectImg2, {
+                opacity: 0,
+                transform: 'translate(50%, -200%) scale(0.3) rotate(0deg)',
+                duration: 0.3, 
+                ease: "power1.in", 
+                onComplete: function () {
+                    gsap.to(projectImg2, { transform: 'translate3d(50%, 200%, 0px) scale3d(0.3, 0.3, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)', duration: '0', delay: 0.6 });
+                    projectAnimations.project2 = null;
+                }
+                });
+            });
+
+            // 세 번째 .project__link에 대한 이벤트 리스너
+            const projectLink3 = document.querySelectorAll('.project__link')[2];
+            const projectImg3 = document.querySelectorAll('.project__img')[2];
+
+            projectLink3.addEventListener('mouseenter', function () {
+                body.style.backgroundColor = 'rgb(255, 150, 43)';
+                if (projectAnimations.project3) {
+                projectAnimations.project3.kill();
+                }
+                projectAnimations.project3 = gsap.to(projectImg3, {
+                opacity: 0.9,
+                transform: 'translate(-50%, -50%) scale(1) rotate(-15deg)',
+                duration: 0.8,
+                ease: "power3.inOut", 
+                });
+            });
+
+            projectImg3.addEventListener('mouseenter', function () {
+                projectAnimations.project3.kill();
+            });
+
+            projectLink3.addEventListener('mouseleave', function () {
+                body.style.backgroundColor = 'rgb(224, 225, 227)';
+                if (projectAnimations.project3) {
+                projectAnimations.project3.kill();
+                }
+                projectAnimations.project3 = gsap.to(projectImg3, {
+                opacity: 0,
+                transform: 'translate(50%, -200%) scale(0.3) rotate(0deg)',
+                duration: 0.3, 
+                ease: "power1.in", 
+                onComplete: function () {
+                    gsap.to(projectImg3, { transform: 'translate3d(50%, 200%, 0px) scale3d(0.3, 0.3, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)', duration: '0', delay: 0.6 });
+                    projectAnimations.project3 = null;
+                }
+                });
+            });
+            
+            // 프로젝트 링크 클릭 이벤트 처리
+            let clickInProgress = false;
+
+            projectLinks.forEach((link, index) => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // 기본 동작 방지
+                    clickInProgress = true;
+
+                    // 클릭한 프로젝트 이미지 확대 애니메이션
+                    gsap.to(projectImg[index], {
+                        width: '100vw',
+                        height: '100vh',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%) rotate(0deg)',
+                        zIndex: 2,
+                        duration: 1.5,
+                        ease: "power3.in",
+                        onComplete: function () {
+                            window.location.href = link.href;
+                            clickInProgress = false;
+                        }
+                    });
+
+                    // 다른 프로젝트 이미지는 숨김
+                    projectImg.forEach((img, i) => {
+                        if (i !== index) {
+                            gsap.to(img, {
+                                opacity: 0,
+                                duration: 1
+                            });
+                        }
+                    });
+                });
+            });
+
         });
+    </script>
+
+    <script>
+        $('.project__link').hover(function(){
+            $('.project__link').not(this).toggleClass('toggle');
+        })
+        $('.project__link').mouseenter(function () {
+            $('.name').stop().animate({
+                opacity: 0.1
+            }, 500);
+            $('.inrto > p').stop().animate({
+                opacity: 0.1
+            }, 500);
+            $('.link').stop().animate({
+                opacity: 0.1
+            }, 500);
         });
+
+        $('.project__link').mouseleave(function () {
+                $('.name').stop().animate({
+                    opacity: 1
+                }, 500);
+                $('.inrto > p').stop().animate({
+                    opacity: 1
+                }, 500);
+                $('.link').stop().animate({
+                    opacity: 1
+                }, 500);
+            });
     </script>
 </body>
 </html>
